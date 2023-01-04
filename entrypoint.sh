@@ -33,4 +33,11 @@ fi
 docker_run="$docker_run -d -p $INPUT_HOST_PORT:$INPUT_CONTAINER_PORT mysql:$INPUT_MYSQL_VERSION --port=$INPUT_CONTAINER_PORT"
 docker_run="$docker_run --character-set-server=$INPUT_CHARACTER_SET_SERVER --collation-server=$INPUT_COLLATION_SERVER"
 
+if [ -n "$INPUT_EXTRA_CONF" ]; then
+    INPUT_EXTRA_CONF=$(echo $INPUT_EXTRA_CONF | xargs)
+    echo "Other startup extra configuration: $INPUT_EXTRA_CONF"
+
+    docker_run="$docker_run $INPUT_EXTRA_CONF"
+fi
+
 sh -c "$docker_run"

@@ -49,6 +49,10 @@ inputs:
     description: "Desired size of tmpfs volume"
     required: false
     default: "1024M"
+  extra conf:
+    description: "Other configuration options, to be added to the startup (--max_allowed_packet=16MB --skip-log-bin ...)"
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'

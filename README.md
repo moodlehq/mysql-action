@@ -1,4 +1,4 @@
-# MySQL GitHub Action [![Test status](https://github.com/mirromutth/mysql-action/workflows/test/badge.svg)](https://github.com/mirromutth/mysql-action/actions)
+# MySQL GitHub Action [![Test status](https://github.com/mirromutth/mysql-action/workflows/test/badge.svg)](https://github.com/stronk7/mysql-action/actions)
 
 This [GitHub Action](https://github.com/features/actions) sets up a MySQL database in Docker.
 
@@ -23,6 +23,10 @@ steps:
     mysql password: ${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
     use tmpfs: true # Optional, default value is false. Mounts /var/lib/mysql to tmpfs (i.e. in RAM) for increased performance
     tmpfs size: '2048M' # Optional, default value is '1024M'. Desired size of above-mentioned tmpfs volume
+    extra conf: | # Optional, default is ''. Other configuration options to be added on startup.
+        --max_allowed_packet=16MB
+        --skip-log-bin
+        ...
 ```
 
 If want bind MySQL host port to 3306, please see [The Default MySQL](#the-default-mysql).
