@@ -1,48 +1,51 @@
 {
-  "name": "mysql-action",
-  "version": "1.1.0",
-  "description": "MySQL Github Action",
-  "main": "build/app.js",
+  "description": "MySQL Github Action with support for tmpfs and startup configuration options.",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "build": "node_modules/.bin/tsc",
-    "test": "mocha -r ts-node/register test/**/*-test.ts"
+    "build": "tsc",
+    "test": "mocha dist/**/*-test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mirromutth/mysql-action.git"
+    "url": "https://github.com/moodlehq/mysql-action.git"
   },
   "keywords": [
     "MySQL",
     "Action",
-    "Github-Actions"
+    "Github-Actions",
+    "linux",
+    "tmpfs"
   ],
   "author": "Mirro Mutth",
+  "contributors": [
+    "Johan Meiring",
+    "Eloy Lafuente (stronk7)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mirromutth/mysql-action/issues"
+    "url": "https://github.com/moodlehq/mysql-action/issues"
   },
-  "homepage": "https://github.com/mirromutth/mysql-action#readme",
+  "homepage": "https://github.com/moodlehq/mysql-action#readme",
   "devDependencies": {
-    "@types/chai": "^4.2.3",
-    "@types/lodash": "^4.14.142",
-    "@types/mocha": "^5.2.7",
-    "@types/mysql": "^2.15.7",
-    "@typescript-eslint/eslint-plugin": "^2.3.3",
-    "@typescript-eslint/parser": "^2.3.3",
-    "chai": "^4.2.0",
-    "eslint": "^6.5.1",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "chai": "^4.3.7",
+    "@types/chai": "^4.3.4",
+    "mocha": "^10.2.0",
+    "ts-mocha": "^10.0.0",
+    "@types/mocha": "^10.0.1",
+    "mysql2": "^2.3.3",
+    "typescript": "^4.9.4",
+    "@types/node": "^16.18.11",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.1",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
-  },
-  "dependencies": {
-    "lodash": "^4.17.15",
-    "mysql": "^2.17.1"
+    "ts-node": "^10.9.1"
   }
 }

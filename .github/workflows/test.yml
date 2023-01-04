@@ -3,37 +3,40 @@ name: test
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
     branches:
-    - master
+    - main
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: ['10.x']
+        db-version: ["5.7", "8.0"]
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop
+    - uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Set up MySQL 5.7
-      uses: mirromutth/mysql-action@master
+        node-version-file: '.nvmrc'
+
+    - name: Set up MySQL
+      uses: stronk7/mysql-action@main
       with:
-        mysql version: 5.7
+        mysql version: ${{ matrix.db-version }}
         mysql database: test
-        mysql root password: ${{ secrets.DatabasePassword }}
+        mysql user: test
+        mysql password: test
+
     - name: npm install, build, and test
       run: |
         npm install
         npm run lint
-        npm test -- --password=${{ secrets.DatabasePassword }}
+        npm run build
+        npm run test
       env:
         CI: true

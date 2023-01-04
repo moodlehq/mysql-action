@@ -1,4 +1,4 @@
-# MySQL GitHub Action [![Test status](https://github.com/mirromutth/mysql-action/workflows/test/badge.svg)](https://github.com/stronk7/mysql-action/actions)
+# MySQL GitHub Action [![Test status](https://github.com/moodlehq/mysql-action/workflows/test/badge.svg)](https://github.com/moodlehq/mysql-action/actions)
 
 This [GitHub Action](https://github.com/features/actions) sets up a MySQL database in Docker.
 
@@ -10,7 +10,7 @@ It is based on the Docker container and is limited by Github Actions, which cont
 
 ```yaml
 steps:
-- uses: mirromutth/mysql-action@v1.1
+- uses: moodlehq/mysql-action@v2
   with:
     host port: 3800 # Optional, default value is 3306. The port of host
     container port: 3307 # Optional, default value is 3306. The port of container
@@ -29,45 +29,14 @@ steps:
         ...
 ```
 
-If want bind MySQL host port to 3306, please see [The Default MySQL](#the-default-mysql).
-
 See [Docker Hub](https://hub.docker.com/_/mysql) for available MySQL versions.
 
 See [Creating and using secrets (encrypted variables)](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables) for hiding database password.
 
-## The Default MySQL
+## History, acknowledgement and appreciation
+This repository is a fork of [johanmeiring/mysql-action](https://github.com/johanmeiring/mysql-action) (thanks for the [tmpfs patch](https://github.com/johanmeiring/mysql-action/commit/4a26b8c80727ba36919673edc9ceca942a98b1c4) there!) that is a fork of the original [mirromutth/mysql-action](https://github.com/mirromutth/mysql-action) (thanks for the [original action](https://github.com/marketplace/actions/setup-mysql) creation!).
 
-MySQL *may* be installed and started by Github Actions (aka. the Default MySQL), that version is 5.7 generally, root superuser password is "root" and port is 3306. See [Software in virtual environments for GitHub Actions](https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions).
-
-So before set-up a MySQL which host port is 3306 in Docker, please make sure the Default MySQL has been shutted-down. Otherwise, action will fail and print an error log that looks like: `Error starting userland proxy: listen tcp 0.0.0.0:3306: bind: address already in use.` (See [#2](https://github.com/mirromutth/mysql-action/issues/2))
-
-Sure, if you do not care about MySQL options, such as version, bound port, character set, character collation, root password, etc., you can use the Default MySQL instead of this Action.
-
-### Shutdown the Default MySQL
-
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-${{ ubuntu-version }} # is Ubuntu environment
-
-    # ... some other config ...
-
-    steps:
-    - # ... some prepare steps, like action/checkout, run some script without MySQL, etc.
-
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
-
-    - # ... some steps before set-up MySQL ...
-    - name: Set up MySQL
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        # ... Set-up MySQL configuration, see Usage
-
-    - # ... some steps after set-up MySQL ...
-
-    # ... some another config ...
-```
+In order to be able to apply some customisations needed to run our big test suites, and because the repositories above aren't active anymore, this fork has been created.
 
 ## License
 

@@ -1,0 +1,25 @@
+{
+  "display": "Node 18",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "lib": ["es2022"],
+    "module": "es2022",
+    "target": "es2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "test/**/*"
+  ],
+  "paths": {
+    "@moodle": ["test/*"]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
+
