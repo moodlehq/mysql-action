@@ -10,7 +10,7 @@ It is based on the Docker container and is limited by Github Actions, which cont
 
 ```yaml
 steps:
-- uses: moodlehq/mysql-action@v2
+- uses: moodlehq/mysql-action@v1
   with:
     host port: 3800 # Optional, default value is 3306. The port of host
     container port: 3307 # Optional, default value is 3306. The port of container
