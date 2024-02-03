@@ -14,13 +14,13 @@ jobs:
 
     strategy:
       matrix:
-        db-version: ["5.7", "8.0"]
+        db-version: ["5.7", "8.0", "8.3"]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version-file: '.nvmrc'
 
